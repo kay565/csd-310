@@ -6,10 +6,10 @@ db =client["pytech"]
 collection = db["students"]
 
 post1 = {
-            "student_id": 1007,  
+            "student_id": 1007, 
             "first_name": "Marry", 
             "last_name": "Python",
-                "enrollment": [
+            "enrollment": [
                 {
                     "term": "winter",
                     "gpa": "3.5",
@@ -19,7 +19,7 @@ post1 = {
             ],
                 "course": [
                 {
-                    "course_id": "1008",
+                    "course_id": 1007,
                     "description": "Network Security",
                     "instructor": "Jones",
                     "grade": "A"
@@ -73,5 +73,15 @@ post3 = {
         
 
 
-doc = db.
-print(student_id)
+
+print(" -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
+result = collection.find({
+    "student_id": {"$gte":1007}})
+
+for doc in result.sort('student_id', pymongo.ASCENDING):
+    print(" Student ID:", doc["student_id"], "\n","First Name:", doc["first_name"], "\n", "Last Name:", doc["last_name"],"\n")
+
+print(" --DISPLAYING STUDENT DOCUMENT FROM find_one() QUERY --")
+result = collection.find_one({"student_id": {"$eq": 1008}})
+print(" Student Name:", result["student_id"], "\n", "First Name:", result["first_name"], "\n", "Last Name:", result["last_name"])   
+  
