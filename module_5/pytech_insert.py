@@ -1,3 +1,4 @@
+
 import pymongo
 from pymongo import MongoClient
 url = "mongodb+srv://admin:admin@cluster0.kd1i6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -70,9 +71,8 @@ post3 = {
                 }
             ]
        }      
-        
 
-
+result = collection.update_one({"student_id": 1007}, {"$set": {"last_name": "Python"}})
 
 print(" -- DISPLAYING STUDENTS DOCUMENTS FROM find() QUERY --")
 result = collection.find({
@@ -84,4 +84,6 @@ for doc in result.sort('student_id', pymongo.ASCENDING):
 print(" --DISPLAYING STUDENT DOCUMENT FROM find_one() QUERY --")
 result = collection.find_one({"student_id": {"$eq": 1008}})
 print(" Student Name:", result["student_id"], "\n", "First Name:", result["first_name"], "\n", "Last Name:", result["last_name"])   
-  
+
+
+
